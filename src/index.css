@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+/* ✅ Define theme colors right here */
+@theme {
+  --color-primary: #001446;   /* Sidebar navy */
+  --color-secondary: #02437B; /* Topbar blue */
+  --color-accent: #028BBF;    /* Buttons */
+  --color-background: #EAF4FB;/* Light background */
+  --color-card: #FFFFFF;      /* White card/table background */
+}
+
+/* ✅ Global styling */
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: var(--color-background);
+  color: #1E293B;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.2s ease-in-out;
+}
