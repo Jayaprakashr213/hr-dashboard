@@ -29,6 +29,21 @@ export default function EmployeeTable({
     setFilterDept(value);
     setShowFilter(false);
   };
+   const formatINR = (amount) => {
+    return new Intl.NumberFormat("en-IN", {
+      style: "currency",
+      currency: "INR",
+      maximumFractionDigits: 0,
+    }).format(amount);
+  };
+  const formatDate = (dateString) => {
+  if (!dateString) return "-";
+  const date = new Date(dateString);
+  const day = String(date.getDate()).padStart(2, "0");
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const year = date.getFullYear();
+  return `${day}-${month}-${year}`;
+};
 
   return (
     <div className="bg-card mt-6 rounded-xl shadow-lg border border-gray-200 relative">
@@ -95,8 +110,8 @@ export default function EmployeeTable({
                 <td className="p-4">{emp.name}</td>
                 <td className="p-4">{emp.department}</td>
                 <td className="p-4">{emp.position}</td>
-                <td className="p-4">{emp.startDate}</td>
-                <td className="p-4">{emp.salary}</td>
+                <td className="p-4">{formatDate(emp.startDate)}</td>
+                <td className="p-4">{formatINR(emp.salary)}</td>
               </tr>
             ))}
           </tbody>

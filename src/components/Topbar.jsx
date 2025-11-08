@@ -26,7 +26,7 @@ export default function Topbar({ onAdd, onSearch }) {  // ✅ added onSearch pro
         onClick={onAdd}
         className="bg-accent px-4 py-2 rounded-lg text-sm hover:bg-accent/80 transition font-medium"
       >
-        + Add People
+        + Add Employee
       </button>
     </div>
   );

@@ -6,11 +6,11 @@ const employeeSlice = createSlice({
     employees: [
       {
         id: 1,
-        name: "Parviz Aslanov",
-        department: "Marketing",
+        name: "JP",
+        department: "IT",
         position: "UI Designer",
-        startDate: "2023-11-20",
-        salary: "1700",
+        startDate: "20-11-2023",
+        salary: "₹12,000",
       },
     ],
     selectedEmployee: null,
