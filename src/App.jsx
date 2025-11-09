@@ -36,9 +36,7 @@ export default function App() {
   let filteredEmployees = employees.filter((emp) => {
     const query = searchQuery.toLowerCase();
     return (
-      emp.name.toLowerCase().includes(query) ||
-      emp.department.toLowerCase().includes(query) ||
-      emp.position.toLowerCase().includes(query)
+      emp.name.toLowerCase().includes(query)
     );
   });
 

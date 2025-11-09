@@ -9,18 +9,15 @@ export default function EmployeeModal({ employee, onClose, onSave }) {
     salary: "",
   });
 
-  useEffect(() => {
-    if (employee) setForm(employee);
-  }, [employee]);
+useEffect(() => { if (employee) setForm(employee); }, [employee]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    // ✅ Salary only allows numbers — no formatting
     if (name === "salary") {
-      const numericValue = value.replace(/[^\d]/g, ""); // remove non-numeric characters
-      setForm({
-        ...form,
-        salary: numericValue ? formatINR(numericValue) : "",
-      });
+      const numericValue = value.replace(/[^\d]/g, ""); // remove non-numeric chars
+      setForm({ ...form, salary: numericValue });
     } else {
       setForm({ ...form, [name]: value });
     }
@@ -28,17 +25,24 @@ export default function EmployeeModal({ employee, onClose, onSave }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const cleanSalary = parseInt(form.salary.replace(/[^0-9]/g, "")) || 0;
 
-    onSave({ ...form, salary: cleanSalary });
+    const cleanSalary = parseInt(form.salary, 10) || 0;
+
+      const today = new Date().toISOString().split("T")[0];
+    if (form.startDate > today) {
+      alert("Start date cannot be in the future.");
+      return;
+    }
+
+    const updatedData = {
+      ...form,
+      salary: cleanSalary,
+      id: employee?.id || Date.now(),
+    };
+
+    onSave(updatedData);
   };
-  const formatINR = (amount) => {
-    return new Intl.NumberFormat("en-IN", {
-      style: "currency",
-      currency: "INR",
-      maximumFractionDigits: 0,
-    }).format(amount);
-  };
+ 
 
   const departments = ["Marketing", "Finance", "HR", "IT", "Sales", "Testing"];
   const positions = [
